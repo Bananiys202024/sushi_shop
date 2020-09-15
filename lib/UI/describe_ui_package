@@ -1,0 +1,4 @@
+UI is also divided into three folders.
+Shared: Contains files used in multiple other UI files.
+Views: Contains the files for the app views.
+Widgets: Contains widget files that are too big to keep in the view files.

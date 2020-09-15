@@ -1,0 +1,154 @@
+Remove put label new
+
+Do i must save images in firebase or on flutter client;
+
+
+next: flutter CRUD firebase;
+
+next: save that data to firebase;
+next: refactor admin optioon file;
+
+add handle exception of firebase with flutter;
+
+
+make message about error;
+make ability to handle different types of errors for flutter app;
+
+
+show for admin page create
+name
+price
+old price
+image
+is new boolean
+
+
+next step -- make design
+
+
+
+
+
+
+
+
+Show snack bar for "confirmation of phone" page
+design account page;
+
+
+make name for product as unique one
+
+    0.Add login page/registration page to drawer menu;
+    1. To design drawer:
+    1.1 Show location on map;
+    1.2 Add number to call;
+    1.3 Personal cabinet
+    1.4 implement detail page;
+    1.5 add categories to drawer;
+
+for admin pages:
+1. add tables of view of orders; add next columns:
+    1.1 Name;
+    1.2 Quantity;
+    1.3 Price;
+    1.4 Ability to print check;
+    1.5 phone;
+    1.6 address;
+    1.7 promo code;
+    1.8 comment;
+    1.9 Add buttons : send messages, delete, accepted and sended;
+2. Add push messages; Ability to send message
+3. add ability send messages about discount
+4. email resending; subscription;
+
+
+
+before implement firebase:
+add loader
+
+final:
+add start page as choose town
+ADD TESTS TO APP!!!! to front-end and back-end;
+Especially check adding to card;
+
+later: add count discount expecially in total field
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+make app with pages;
+Create on github folder "flutter functional"
+describe: additional functional for flutter from area of payent; or smth like that;
+
+Payment for some additional fuctionnal and
+implement in separate:
+1) Google Map. Add marks to google mark.
+
+Later:
+show different location in townes, depends from choosen town;
+search field;
+
+Implement geo location in flutter;
+
+add page:
+to choose geto location on first page
+after loading app;
+add automatically define location;
+IMPLEMENT GOOGLE MAPS IN SEPARATE REPOSITORY/PROJECT;
+
+add google maps;
+https://www.youtube.com/watch?v=hBL-zpC4rQA&list=LLvmDXp6pvzjWgZS6XWsozzQ&index=2&t=119s
+
+
+A Flutter plugin for integrating Google Maps in iOS, Android and Web applications. It is a wrapper of google_maps_flutter for Mobile and google_maps for Web.
+IMPLEMENT GOOGLE MAPS IN SEPARATE REPOSITORY/PROJECT;
+
+add google maps;
+https://www.youtube.com/watch?v=hBL-zpC4rQA&list=LLvmDXp6pvzjWgZS6XWsozzQ&index=2&t=119s
+
+
+A Flutter plugin for integrating Google Maps in iOS, Android and Web applications. It is a wrapper of google_maps_flutter for Mobile and google_maps for Web.
+
+
+next app:
+Make app for cloud saving image!!!
+later: add plan for payment;
+example how to make that app in github:
+https://github.com/invoiceninja/flutter-client
+1. Impleent payment by card on Android;
+
+
+
+Add app with ability to load images;

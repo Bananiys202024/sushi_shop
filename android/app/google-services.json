@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "910885210450",
+    "firebase_url": "https://sushi-shop-online.firebaseio.com",
+    "project_id": "sushi-shop-online",
+    "storage_bucket": "sushi-shop-online.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:910885210450:android:6d37207b7915501e26928b",
+        "android_client_info": {
+          "package_name": "com.service.flutter_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "910885210450-5m9vsbomr4k3v83viq55p6pupndcmp25.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.service.flutter_app",
+            "certificate_hash": "489aa33c92ba0c3652563925e40802fe16e72350"
+          }
+        },
+        {
+          "client_id": "910885210450-rekie0l2l5ipe366tr03ur7unickq4qp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB5m0PRjCgNDXyEPPk1C6zWODlItiS4Ek0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "910885210450-rekie0l2l5ipe366tr03ur7unickq4qp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
