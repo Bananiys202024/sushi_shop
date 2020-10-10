@@ -1,19 +1,20 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/core/entity/product.dart';
-import '../../locator.dart';
-import '../services/api.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
-class CRUDModel extends ChangeNotifier {
-  Api _api = locator<Api>();
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_app/core/services/api_for_table_products.dart';
+import 'package:flutter_app/locator.dart';
+
+class CRUDModelForTableProducts extends ChangeNotifier {
+  ApiForTableProducts _api = locator<ApiForTableProducts>();
 
   List<Product> products;
 
   Future<List<Product>> fetchProducts() async {
     var result = await _api.getDataCollection();
     products = result.documents
-        .map((doc) => Product.fromMap(doc.data, doc.documentID))
+        .map((doc) => Product.fromMap(doc.data(), doc.documentID))
         .toList();
     return products;
   }
@@ -24,7 +25,7 @@ class CRUDModel extends ChangeNotifier {
 
   Future<Product> getProductById(String id) async {
     var doc = await _api.getDocumentById(id);
-    return  Product.fromMap(doc.data, doc.documentID) ;
+    return  Product.fromMap(doc.data(), doc.documentID);
   }
 
 

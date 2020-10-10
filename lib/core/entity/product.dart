@@ -7,13 +7,23 @@ class Product {
   String image;
   String details;
   String name;
-  String price;
-  String old_price;
+  int price;
+  int old_price;
+
   String categorie;
   bool is_new;
 
+  int quantity;// we use this column to count quantity of ordered items,
+  //this variable for page shop_bucket;
+  bool is_favorite;//we don't use this column in entity 1
+
+
   Product(this.image, this.details, this.name, this.price,
       this.old_price, this.categorie, this.is_new);
+
+  Product.asModel(this.id, this.image, this.name,  this.details, this.price,
+      this.old_price, this.is_favorite, this.is_new, this.quantity);
+
 
   Product.fromMap(Map snapshot,String id) :
         id = id ?? '',
@@ -24,6 +34,15 @@ class Product {
         categorie = snapshot['categorie'] ?? '',
         is_new = snapshot['is_new'] ?? '',
         image = snapshot['img'] ?? '';
+
+  void set set_quantity(int new_quantity) {
+    this.quantity = new_quantity;
+  }
+//
+//  toJsonAsString()
+//  {
+//    return "price"
+//  }
 
 
   toJson() {

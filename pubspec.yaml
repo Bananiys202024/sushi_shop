@@ -32,12 +32,14 @@ dependencies:
     sdk: flutter
   badges: ^1.1.1
   image_picker: ^0.6.0+17
-  firebase_storage: ^3.0.3
-  firebase_core: ^0.4.5
+  firebase_storage: ^4.0.0
+  firebase_core: ^0.5.0
   grouped_buttons: ^1.0.4
   get_it: ^1.0.3+2 #we will use it for dependency injection with provider
-  provider: ^3.0.0+1 #provider is mostly syntax sugar for InheritedWidget, to make common use-cases straightforward
-  cloud_firestore: ^0.12.9 #i think i need remove firebase storage cuz i have cloud firestore
+  provider: ^3.1.0+1 #provider is mostly syntax sugar for InheritedWidget, to make common use-cases straightforward
+  cloud_firestore: ^0.14.0 #i think i need remove firebase storage cuz i have cloud firestore
+  http: ^0.12.0+4
+  firebase_auth: "0.18.0+1"
 
 
 #  flutter_map: any
@@ -68,6 +70,7 @@ flutter:
     - assets/images/products/packs_and_combos/
     - assets/images/external_icons/
     - assets/images/categories/
+    - assets/images/
     - assets/
 
   #   - images/a_dot_ham.jpeg

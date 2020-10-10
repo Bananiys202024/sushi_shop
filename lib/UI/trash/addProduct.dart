@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/core/entity/product.dart';
-import 'package:flutter_app/core/viewModels/CRUDModel.dart';
+import 'package:flutter_app/core/viewModels/CRUDModelForTableProducts.dart';
 import 'package:provider/provider.dart';
 
 
@@ -17,7 +17,7 @@ class _AddProductState extends State<AddProduct> {
 
   @override
   Widget build(BuildContext context) {
-    var productProvider = Provider.of<CRUDModel>(context) ;
+    var productProvider = Provider.of<CRUDModelForTableProducts>(context) ;
     return Scaffold(
       appBar: AppBar(
         title: Center(

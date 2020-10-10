@@ -24,7 +24,7 @@ class Counter extends StatelessWidget {
     this.step = 1,
     this.buttonSize = 25,
     this.model,
-    this.id_of_model,
+    this.name_of_model,
   })  : assert(initialValue != null),
         assert(minValue != null),
         assert(maxValue != null),
@@ -36,7 +36,7 @@ class Counter extends StatelessWidget {
 
   final CardModel model;
 
-  String id_of_model;
+  String name_of_model;
 
   ///min value user can pick
   final num minValue;
@@ -73,7 +73,7 @@ class Counter extends StatelessWidget {
 
     debugPrint('selectedValue---'+selectedValue.toString());
     if (selectedValue <= 0) {
-      model.remove_by_id(id_of_model);
+      model.remove_by_name(name_of_model);
     }
 
 

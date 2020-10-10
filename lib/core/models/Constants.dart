@@ -3,6 +3,8 @@ class Constants {
   static final String fish_text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum pellentesque consequat erat, eu congue leo tincidunt pretium. ";
   static final String text_for_comment_field = "you can write here about your speciall desires";
 
+  static const  String TWILIO_SMS_API_BASE_URL = 'https://api.twilio.com/2010-04-01';
+
   //use as name of images in drawer;
   static var categories = [
     'new',

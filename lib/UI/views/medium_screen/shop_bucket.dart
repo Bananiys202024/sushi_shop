@@ -32,7 +32,7 @@ class ShopCard extends StatelessWidget {
           return Dismissible(
             key: UniqueKey(),
             onDismissed: (direction) {
-              model.remove_by_id(model.get_all()[pos].id);
+              model.remove_by_name(model.get_all()[pos].name);
             },
             child: PatternShopBucketCard(
                 product: model.get_all()[pos], model: model),

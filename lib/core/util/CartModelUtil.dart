@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/core/models/product.dart';
+import 'package:flutter_app/core/entity/product.dart';
 
 class CardModelUtil {
   final List<Product> _items = [];
@@ -9,10 +9,10 @@ class CardModelUtil {
 
     if (_items == null) return false;
 
-    String id = product.id;
+    String name = product.name;
 
     for (int i = 0; i < _items.length; i++) {
-      if (_items[i].id == id) return true;
+      if (_items[i].name == name) return true;
     }
 
     return false;
@@ -22,24 +22,29 @@ class CardModelUtil {
   {
 
     int count = 0;
-    String id = product.id;
+    String name = product.name;
 
     debugPrint('length of list---'+_items.length.toString());
 
+
     for (int i = 0; i < _items.length; i++) {
-      debugPrint("this is item_---"+_items[i].id);
-      if (_items[i].id == id)
+      debugPrint("this is item_---"+_items[i].name);
+      debugPrint('inside loop length of list---'+_items.length.toString());
+      if (_items[i].name == name)
         {
-            debugPrint(_items[i].id.toString());
+            debugPrint(_items[i].name.toString());
             debugPrint(_items[i].quantity.toString());
             int quantity = _items[i].quantity;
-            _items.remove(product);
+
             product.set_quantity = quantity+1;
-            _items.add(product);
+            _items[i] = product;
             debugPrint("SET_QUANTITY----"+product.quantity.toString());
             count++;
         };
     }
+    debugPrint('inside loop length of list---'+_items.length.toString());
+
+    debugPrint('finish in method add_pus_one_to...');
 
     return count;
   }
@@ -48,14 +53,14 @@ class CardModelUtil {
   {
 
     int counter = 0;
-    String id = product.id;
+    String name = product.name;
 
     for (int i = 0; i < _items.length; i++) {
-      if (_items[i].id == id)
+      if (_items[i].name == name)
       {
         debugPrint('Length'+_items.length.toString());
-        debugPrint("id from items---"+_items[i].id.toString());
-        debugPrint("just id----"+id.toString());
+        debugPrint("id from items---"+_items[i].name.toString());
+        debugPrint("just id----"+name.toString());
         debugPrint(_items[i].quantity.toString());
         int quantity = _items[i].quantity;
         product.set_quantity = quantity-1;
@@ -74,10 +79,10 @@ class CardModelUtil {
     return counter;
   }
 
-  static Product findByid(List<Product> _items, id)
+  static Product findByName(List<Product> _items, name)
   {
     for (int i = 0; i < _items.length; i++) {
-      if (_items[i].id == id) {
+      if (_items[i].name == name) {
         return _items[i];
       }
     }

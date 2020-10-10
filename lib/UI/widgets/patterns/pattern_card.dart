@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/core/entity/product.dart';
 import 'package:flutter_app/core/models/card_model.dart';
-import 'package:flutter_app/core/models/product.dart';
 
 class PatternCard extends StatefulWidget {
   Product product;
@@ -37,20 +37,20 @@ class _PatternCardState extends State<PatternCard> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-          Padding(
-            padding: EdgeInsets.all(5.0),
-            child: widget.product.is_favorite
-                ? Icon(
-                    Icons.favorite,
-                    color: Colors.yellow,
-                    size: 26.0,
-                  )
-                : Icon(
-                    Icons.favorite_border,
-                    color: Colors.grey,
-                    size: 26.0,
-                  ),
-          ),
+//          Padding(
+//            padding: EdgeInsets.all(5.0),
+//            child: widget.product.is_favorite
+//                ? Icon(
+//                    Icons.favorite,
+//                    color: Colors.yellow,
+//                    size: 26.0,
+//                  )
+//                : Icon(
+//                    Icons.favorite_border,
+//                    color: Colors.grey,
+//                    size: 26.0,
+//                  ),
+//          ),
           Padding(
             padding: EdgeInsets.only(right: 5.0, top: 0.0),
             child: widget.product.is_new
@@ -67,11 +67,15 @@ class _PatternCardState extends State<PatternCard> {
   }
 
   Widget middle_card_1(Product product) {
-    return Expanded(
+
+    return
+      product.image == ''?
+      Expanded(
+        flex: 2,
+        child: Image.asset("assets/images/default.jpeg"),
+      ):Expanded(
       flex: 2,
-      child: Image(
-        image: AssetImage(product.image + product.id + '.png'),
-      ),
+      child: Image.network(product.image),
     );
   }
 
@@ -120,7 +124,7 @@ class _PatternCardState extends State<PatternCard> {
                       child: new Center(
                         child: Padding(
                           padding: EdgeInsets.all(1.0),
-                          child: Text(product.price,
+                          child: Text(product.price.toString()+"p",
                               style: TextStyle(
                                 color: Colors.white,
                               )),
@@ -131,7 +135,7 @@ class _PatternCardState extends State<PatternCard> {
                   Expanded(
                     flex: 0,
                     child: Text(
-                      product.old_price,
+                      product.old_price.toString()+"p",
                       style: TextStyle(
                           color: Colors.grey,
                           decoration: TextDecoration.lineThrough),
@@ -180,7 +184,7 @@ class _PatternCardState extends State<PatternCard> {
                           padding: EdgeInsets.only(left: 5.0),
                           child: Align(
                             alignment: Alignment.centerLeft,
-                            child: Text(product.price,
+                            child: Text(product.price.toString()+"p",
                                 style: TextStyle(
                                   color: Colors.black,
                                 )),

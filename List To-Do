@@ -1,154 +1,162 @@
-Remove put label new
 
-Do i must save images in firebase or on flutter client;
+currently date of progress: 10.10.20
+currently amount: +9+1
+start date: 04.10.20
+expected finish  date: 04.12.2020
+expected amount: 62;
+
+next: display ordered items to admin:
+0. Create link and page(route) to page of display ordered items;
+1. Create design table. Implement columns required
+2. Request from firebase data to back-end;
+3. Arrange data to front-end
 
+refactor file: "UI/views/medium_screen/admin/options/create_new_product.dart"
 
-next: flutter CRUD firebase;
-
-next: save that data to firebase;
-next: refactor admin optioon file;
-
-add handle exception of firebase with flutter;
-
-
-make message about error;
-make ability to handle different types of errors for flutter app;
-
-
-show for admin page create
-name
-price
-old price
-image
-is new boolean
-
-
-next step -- make design
-
-
-
-
-
-
-
-
-Show snack bar for "confirmation of phone" page
-design account page;
-
-
-make name for product as unique one
-
-    0.Add login page/registration page to drawer menu;
-    1. To design drawer:
-    1.1 Show location on map;
-    1.2 Add number to call;
-    1.3 Personal cabinet
-    1.4 implement detail page;
-    1.5 add categories to drawer;
-
-for admin pages:
-1. add tables of view of orders; add next columns:
-    1.1 Name;
-    1.2 Quantity;
-    1.3 Price;
-    1.4 Ability to print check;
-    1.5 phone;
-    1.6 address;
-    1.7 promo code;
-    1.8 comment;
-    1.9 Add buttons : send messages, delete, accepted and sended;
-2. Add push messages; Ability to send message
-3. add ability send messages about discount
-4. email resending; subscription;
-
-
-
-before implement firebase:
-add loader
-
-final:
-add start page as choose town
-ADD TESTS TO APP!!!! to front-end and back-end;
-Especially check adding to card;
-
-later: add count discount expecially in total field
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-make app with pages;
-Create on github folder "flutter functional"
-describe: additional functional for flutter from area of payent; or smth like that;
-
-Payment for some additional fuctionnal and
+next: fix problems with add image; incorrect add;
+especially first add of image to app not possible;
+next: refactor code form_of_order file;
+
+next:
+so, add next columns while creating item:
+FavoriteListOfUsersToThisItem as List<String> ["+749325524558", "+9472259884"]
+searchKeywords column as List<String> ['p', 'pr', 'pro', 'prom']
+IMPORTANT: make name column as unique column
+
+
+Create column: FavoriteListOfUsersToThisItem while creating note;
+if user not logged in just display empty favorite, and on click to favorite suggest to log in;
+
+refactor file views/medium_screen/admin/options/create_new_product;
+separate code to another folders;
+add to name classses and variables "_";
+push to github
+
+
+TO-DO PLAN
+done 120m         next: fix shop bucket when add default image and with not new label
+120m         next: add column of searchKeywords to create product;
+                   add field of key words to add product for search field;
+                            I must create column searchKeywords as array:
+                            For example word: "word"
+                            searchKeyWords contains next letters:
+                            1.w
+                            2.o
+                            3.r
+                            4.d
+
+240m         next: make ability add ordered items to firebase
+                     write to firebase
+                     refactor design
+
+360m         next: create table of orders
+                      design of table and request data from firebase
+                      add time to button resend code;
+                      after click disable button and automatically
+                      dis disable button after 60 seconds;
+
+240m         next: Add rules of restriction, rules to restrictions
+                    about roles; add restrictions to admin panel only for admin;
+                    and pages for admin;
+60m          next: Delete twilio part;
+
+120m         next: Add proper sign in by code(refactor design)
+
+300m         next: Fix arised problems(5 hourse)
+300m         next: Fix extra problems of fixed problems(5 hourse)
+60m          next: refactor admin panel;
+240m         next: Add rules restriction of authorized
+                          and not to signed in user
+                          or signed out to drawer menu;
+360m         next: refactor code; to have ability just copy modules;
+                         separate by modules;
+60m          next: add everywhere to lower case;
+360m         next: add ability to mark favorite icon with firebase;
+60m          next: fix problem with display favorite icon
+180m         next: resend phone number with firebase in sign-in process
+                          or registration process;
+120m         next: add limit of attempts of enter code;
+240m         next: anonymou s sign-in add to app;
+                    https://firebase.flutter.dev/docs/auth/usage/
+180m         next:. use it for sending message about ready order:
+                        https://pub.dev/packages/sms_maintained
+                        https://stackoverflow.com/questions/60356974/send-sms-from-flutter-app-without-user-interaction
+
+
+expected finish  date: 04.12.2020
+total amount: 61;
+
+
+decrease memory of app;
+
+
+after order clear shop bucket;
+add loader(while showing "fetching" in main screen
+
+may be later add tAble:  table with information
+count records in tables; ordered orders and executed(finished) projects
+
+add types to variables;
+
+chanfge namme of variabes to hidden with _
+Replace all Statefill to Stateless as it possible, because creating
+of Stateful more expensive;
+
+
+refactor names of files;
+MAke all files name to lower case , use _ as separator if need because some system case-sensitive;
+flutter best practices use only lowercase in name of files
+
+add button add to search option;
+on order page if form is not valid then go to that field and show that field
+
+
+AFTER Minimum Valuable Project
+1. Check your town by start up;
+2. Automatically detect location
+3. add push messages
+               for admin: new order
+               for user: order accepted;
+               for user: order sended;
+4. next: send on email about discount;
+5. next: push messages about discount;
+6. next: add count discount, expecially in total field;
+7.new label is dissappear after some days;
+    1.1 add column date_of_add to product model;
+    1.2  check date while displaying in new categorie
+8. handle errors;
+9.loader;
+10. implement detail page;
+11. start page as choosen town;
+12. testing to app;
+13. set auto expiration of new label;
+14. extra: add auto complete to search  bar
+15. add ability to load default image in admin cabinet
+16. Google Map. Add marks to google mark.
+17.  check suship shop online
+    on sign-in with different phones;
+    Main problem: in second time and next time sign in
+    without sms about confirmation
+18. Add ability to count the most popular ordered items;
+19. Try improve process of adding to card, CardModelUtil and other classes similiar;
+20. think about use state and stateless in app;
+21. add ability save once inputed data to form of order;
+22. add discount;
+23. add BLoC design Pattern;
+
+OTHER APP:
+1.make app with pages;
+2. Payment for some additional fuctionnal and
 implement in separate:
-1) Google Map. Add marks to google mark.
-
-Later:
-show different location in townes, depends from choosen town;
-search field;
-
-Implement geo location in flutter;
-
-add page:
-to choose geto location on first page
-after loading app;
-add automatically define location;
-IMPLEMENT GOOGLE MAPS IN SEPARATE REPOSITORY/PROJECT;
-
-add google maps;
-https://www.youtube.com/watch?v=hBL-zpC4rQA&list=LLvmDXp6pvzjWgZS6XWsozzQ&index=2&t=119s
-
-
-A Flutter plugin for integrating Google Maps in iOS, Android and Web applications. It is a wrapper of google_maps_flutter for Mobile and google_maps for Web.
-IMPLEMENT GOOGLE MAPS IN SEPARATE REPOSITORY/PROJECT;
-
-add google maps;
-https://www.youtube.com/watch?v=hBL-zpC4rQA&list=LLvmDXp6pvzjWgZS6XWsozzQ&index=2&t=119s
-
-
-A Flutter plugin for integrating Google Maps in iOS, Android and Web applications. It is a wrapper of google_maps_flutter for Mobile and google_maps for Web.
-
-
-next app:
-Make app for cloud saving image!!!
-later: add plan for payment;
-example how to make that app in github:
-https://github.com/invoiceninja/flutter-client
-1. Impleent payment by card on Android;
+3. add authorization with google, facebook,  and others app;
 
 
 
-Add app with ability to load images;
+
+DOLPHI NOTES NOTEBOOK:
+1. add ability point gmail for export database;
+2 Add ability switch off additional functional;
+3. Ability push warnings about wather with firebase
+4 add BLoC
+
+

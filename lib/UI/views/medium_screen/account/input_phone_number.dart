@@ -1,4 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/UI/views/medium_screen/account/confirmation_code.dart';
+import 'package:flutter_app/core/services/twilio/send_sms.dart';
+
+import 'dart:io' show Platform;
+import 'dart:math';
+
+import 'package:flutter_app/core/models/twilio.dart';
 
 import 'cabinet.dart';
 
@@ -84,6 +91,8 @@ class _InputPhoneNumberState extends State<InputPhoneNumber> {
      );
   }
 
+
+
   Widget submit_button() {
     return Center(
       child: RaisedButton(
@@ -96,13 +105,22 @@ class _InputPhoneNumberState extends State<InputPhoneNumber> {
 //            scaffold
 //                .showSnackBar(SnackBar(content: Text('Processing Data....')));
 
+            int generated_code = random(1000,9999);
+
+//            send_sms_to_phone_twilio(generated_code, myController.text.toString());
+
             Navigator.push(
-                context, MaterialPageRoute(builder: (context) => AccountCabinet()));
+                context, MaterialPageRoute(builder: (context) => ConfirmationCode(generated_code: generated_code, phone: myController.text.toString())));
           }
         },
         child: Text('Send confirmation'),
       ),
     );
+  }
+
+  random(min, max){
+    var rn = new Random();
+    return min + rn.nextInt(max - min);
   }
 
 }

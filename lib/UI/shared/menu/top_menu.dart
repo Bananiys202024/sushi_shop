@@ -3,12 +3,14 @@ import 'package:badges/badges.dart';
 import 'package:flutter_app/UI/views/medium_screen/shop_bucket.dart';
 import 'package:flutter_app/core/models/Constants.dart';
 import 'package:flutter_app/core/models/card_model.dart';
+import 'package:flutter_app/core/viewModels/search.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 class TopMenu extends StatefulWidget implements PreferredSizeWidget {
   TopMenu({Key key}) : super(key: key);
 
   final String title = Constants.get_title_of_top_menu();
+  final List<String> list = List.generate(10, (index) => "Text $index");
 
   @override
   _TopMenuState createState() => _TopMenuState();
@@ -57,7 +59,16 @@ class _TopMenuState extends State<TopMenu> {
     return [
       Padding(
         padding: EdgeInsets.symmetric(horizontal: 16),
-        child: Icon(Icons.search, color: Colors.red),
+        child: IconButton(
+            icon: Icon(Icons.search),
+            onPressed: () {
+              //show text field and
+              // hide logo and
+              // hide title
+              showSearch(context: context, delegate: Search(widget.list));
+            },
+            color: Colors.red
+        ),
       ),
       ScopedModelDescendant<CardModel>(
         builder: (context, child, model) {

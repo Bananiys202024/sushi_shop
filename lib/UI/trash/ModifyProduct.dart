@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/core/models/product.dart';
-import 'package:flutter_app/core/viewModels/CRUDModel.dart';
+import 'package:flutter_app/core/viewModels/CRUDModelForTableProducts.dart';
 import 'package:provider/provider.dart';
 
 
@@ -24,7 +24,7 @@ class _ModifyProductState extends State<ModifyProduct> {
 
   @override
   Widget build(BuildContext context) {
-    final productProvider = Provider.of<CRUDModel>(context);
+    final productProvider = Provider.of<CRUDModelForTableProducts>(context);
     productType =  widget.product.image[0].toUpperCase() + widget.product.image.substring(1);
     return Scaffold(
       appBar: AppBar(

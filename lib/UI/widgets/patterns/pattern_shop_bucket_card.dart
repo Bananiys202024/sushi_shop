@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/core/entity/product.dart';
 import 'package:flutter_app/core/models/card_model.dart';
-import 'package:flutter_app/core/models/product.dart';
 import 'package:flutter_app/core/util/counter.dart';
 
 class PatternShopBucketCard extends StatefulWidget {
@@ -22,9 +22,8 @@ class _PatternShopBucketCardState extends State<PatternShopBucketCard> {
 
   @override
   Widget build(BuildContext context) {
-
-    String quantity = widget.model.get_quantity_by_id(widget.product.id);
-    debugPrint("Quantity in build method--"+ quantity);
+    String quantity = widget.model.get_quantity_by_name(widget.product.name);
+    debugPrint("Quantity in build method--" + quantity);
     this._defaultValue = int.parse(quantity);
 
     return new Column(
@@ -33,7 +32,7 @@ class _PatternShopBucketCardState extends State<PatternShopBucketCard> {
           child: ListTile(
             leading: get_leading(widget.product),
             title: Text(widget.product.name),
-            subtitle: Text(widget.product.price),
+            subtitle: Text(widget.product.price.toString()+"p"),
             trailing: get_counter(widget.model, widget.product),
           ),
         ),
@@ -42,15 +41,17 @@ class _PatternShopBucketCardState extends State<PatternShopBucketCard> {
   }
 
   Widget _incrementButton(Product product, CardModel model) {
-    return new InkWell(
+        return new InkWell(
       onTap: () {
         add(product, model);
       },
+
       child: Container(
         width: 20,
         height: 20,
         child: new FloatingActionButton(
-          heroTag: 'increment_button_' + product.id,
+
+          heroTag: 'increment_button_' + product.name,
           onPressed: add(product, model),
           child: new Icon(
             Icons.add_circle_outline,
@@ -71,7 +72,7 @@ class _PatternShopBucketCardState extends State<PatternShopBucketCard> {
           width: 20,
           height: 20,
           child: new FloatingActionButton(
-            heroTag: "decrement_button_" + product.id,
+            heroTag: "decrement_button_" + product.name,
 //          onPressed: ,
             child: new Icon(
               Icons.remove_circle_outline,
@@ -99,42 +100,47 @@ class _PatternShopBucketCardState extends State<PatternShopBucketCard> {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           Counter(
-      color: Colors.grey,
-      buttonSize: 24,
-      model: model,
-      id_of_model: product.id,
-      heroTag: product.id,
-      initialValue: _defaultValue,
-      minValue: 0,
-      maxValue: 10000,
-      step: 1,
-      decimalPlaces: 1,
-      onChanged: (value) { // get the latest value from here
-        setState(() {
+            color: Colors.grey,
+            buttonSize: 24,
+            model: model,
+            name_of_model: product.name,
+            heroTag: product.name,
+            initialValue: _defaultValue,
+            minValue: 0,
+            maxValue: 10000,
+            step: 1,
+            decimalPlaces: 1,
+            onChanged: (value) { // get the latest value from here
+              setState(() {
+                if (value < _defaultValue && value != -1) minus(product, model);
+                if (value > _defaultValue) add(product, model);
 
-          if(value < _defaultValue && value != -1) minus(product, model);
-          if(value > _defaultValue) add(product, model);
+                debugPrint("Default value---" + _defaultValue.toString());
+                debugPrint("Value--" + value.toString());
 
-          debugPrint("Default value---"+_defaultValue.toString());
-          debugPrint("Value--"+value.toString());
-
-          _defaultValue = value;
-        });
-      },
-    ),
+                _defaultValue = value;
+              });
+            },
+          ),
         ],
       );
   }
 
-  Widget get_leading(Product product)
-  {
-   return  SizedBox(
-      height: 60,
-      width: 80,
-      child: Image(
-        image: AssetImage(
-            product.image + product.id + '.png'),
-      ),
+  Widget get_leading(Product product) {
+    return SizedBox(
+        height: 60,
+        width: 80,
+        child:
+        product.image == null || product.image == ''?
+
+        Image(
+            image:
+            AssetImage('assets/images/default.jpeg')
+        )
+            :
+
+        Image.network(product.image)
     );
+
   }
 }

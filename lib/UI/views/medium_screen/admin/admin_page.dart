@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/UI/shared/menu/simplified_top_menu.dart';
 import 'package:flutter_app/UI/trash/HomeView.dart';
+import 'package:flutter_app/UI/views/medium_screen/admin/options/table_of_orders.dart';
 
 import 'options/create_new_product.dart';
 
@@ -57,13 +58,20 @@ class _AdminPageState extends State<AdminPage> {
               child: Text('Remove product by name',
                   style: TextStyle(color: Colors.white))),
         ),
-        Container(
+
+    InkWell(
+    onTap: () {
+    Navigator.push(
+    context, MaterialPageRoute(builder: (context) => TableOfOrders()));
+    },
+    child:Container(
           height: 50,
           color: Colors.red[600],
           child: const Center(
               child: Text('Table of orders',
                   style: TextStyle(color: Colors.white))),
         ),
+    ),
       ],
     );
   }

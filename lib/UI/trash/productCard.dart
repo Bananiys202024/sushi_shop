@@ -9,6 +9,9 @@ class ProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    debugPrint('debug Print---'+ productDetails.image);
+
     return GestureDetector(
       onTap: (){
 
@@ -40,14 +43,25 @@ class ProductCard extends StatelessWidget {
               children: <Widget>[
                 Hero(
                   tag: productDetails.id,
-                  child: Image.asset(
-                    'assets/${productDetails.image}.jpg',
+                  child:
+//                  Image.network('https://googleflutter.com/sample_image.jpg'),
+
+                  Image.network(productDetails.image,
                     height: MediaQuery
                         .of(context)
                         .size
                         .height *
                         0.35,
                   ),
+
+//                  Image.asset(
+//                    'assets/${productDetails.image}.jpg',
+//                    height: MediaQuery
+//                        .of(context)
+//                        .size
+//                        .height *
+//                        0.35,
+//                  ),
                 ),
                 Padding(
                   padding: EdgeInsets.all(16),

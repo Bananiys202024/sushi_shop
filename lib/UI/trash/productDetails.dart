@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/UI/trash/ModifyProduct.dart';
 import 'package:flutter_app/core/models/product.dart';
-import 'package:flutter_app/core/viewModels/CRUDModel.dart';
+import 'package:flutter_app/core/viewModels/CRUDModelForTableProducts.dart';
 import 'package:provider/provider.dart';
 
 class ProductDetails extends StatelessWidget {
@@ -11,7 +11,7 @@ class ProductDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final productProvider = Provider.of<CRUDModel>(context);
+    final productProvider = Provider.of<CRUDModelForTableProducts>(context);
 
     return Scaffold(
       appBar: AppBar(

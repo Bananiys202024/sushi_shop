@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/UI/trash/addProduct.dart';
 import 'package:flutter_app/UI/trash/productCard.dart';
 import 'package:flutter_app/core/models/product.dart';
-import 'package:flutter_app/core/viewModels/CRUDModel.dart';
+import 'package:flutter_app/core/viewModels/CRUDModelForTableProducts.dart';
 import 'package:provider/provider.dart';
 
 class HomeView extends StatefulWidget {
@@ -16,7 +16,7 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   Widget build(BuildContext context) {
-    final productProvider = Provider.of<CRUDModel>(context);
+    final productProvider = Provider.of<CRUDModelForTableProducts>(context);
 
     return Scaffold(
       floatingActionButton: FloatingActionButton(
@@ -40,8 +40,11 @@ class _HomeViewState extends State<HomeView> {
             builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
               if (snapshot.hasData) {
                 products = snapshot.data.documents
-                    .map((doc) => Product.fromMap(doc.data, doc.documentID))
+                    .map((doc) => Product.fromMap(doc.data(), doc.documentID))
                     .toList();
+
+                debugPrint("Products from HomeView----"+products.toString());
+
                 return ListView.builder(
                   itemCount: products.length,
                   itemBuilder: (buildContext, index) =>

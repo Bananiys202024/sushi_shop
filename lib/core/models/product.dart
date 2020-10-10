@@ -8,6 +8,7 @@ class Product {
   String old_price;
   bool is_favorite;
   bool is_new;
+  String categorie;
   int quantity;// we use this column to count quantity of ordered items,
                //this variable for page shop_bucket;
 
@@ -25,17 +26,24 @@ class Product {
   }
 
 
-  Product.fromMap(Map snapshot,String id) :
+  Product.fromMap(Map snapshot, String id) :
         id = id ?? '',
         price = snapshot['price'] ?? '',
         name = snapshot['name'] ?? '',
-        image = snapshot['img'] ?? '';
+        details = snapshot["details"],
+        categorie = snapshot["categorie"],
+        is_new = snapshot["is_new"],
+        old_price = snapshot["old_price"],
+        image = snapshot['image'] ?? '';
+
 
   toJson() {
     return {
       "price": price,
       "name": name,
-      "img": image,
+      "image": image,
+      
     };
   }
+
 }
