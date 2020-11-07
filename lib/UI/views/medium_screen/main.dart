@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/UI/widgets/patterns/pattern_shop_list.dart';
 import 'package:flutter_app/core/entity/product.dart';
-import 'package:flutter_app/core/models/Generator.dart';
 import 'package:flutter_app/core/models/card_model.dart';
+import 'package:loading/indicator/ball_pulse_indicator.dart';
+import 'package:loading/loading.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_app/core/viewModels/CRUDModelForTableProducts.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:loader/loader.dart';
 
 class MainMediumPhone extends StatefulWidget {
   MainMediumPhone({Key key, this.model, this.initIndex}) : super(key: key);
 
-  List<Product> list_sushi = Generator.list_sushi;
-  List<Product> list_pizza = Generator.list_pizza;
-  List<Product> list_packs_and_combos = Generator.list_packs_and_combos;
-  List<Product> list_rolls = Generator.list_rolls;
+  List<Product> list_sushi = null;
+  List<Product> list_pizza = null;
+  List<Product> list_packs_and_combos = null;
+  List<Product> list_rolls = null;
   CardModel model;
   int initIndex;
   List<Product> products;
@@ -99,6 +101,7 @@ class _MainMediumPhoneState extends State<MainMediumPhone>
       debugPrint(
           "Check of categories----" + widget.model.get_choosen_categorie());
     });
+      debugPrint("after listener inside main class;");
 
     return MaterialApp(
       home: StreamBuilder(
@@ -176,10 +179,26 @@ class _MainMediumPhoneState extends State<MainMediumPhone>
                   ),
                 ),
               );
-            } else {
-              return Text('fetching');
+            }
+            else {
+            return Container(
+              child: Center(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Transform.scale(
+                      scale: 1,
+                      child: CircularProgressIndicator(backgroundColor: Colors.red,),
+                    )
+                  ],
+                ),
+              ),
+            );
             }
           }),
     );
   }
+
+
 } //end class

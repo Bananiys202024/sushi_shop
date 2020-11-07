@@ -52,20 +52,37 @@ submit_button(phone_field_controller,
 
         //block for define time
         String time = "";
+        String payment = "";
+
+        debugPrint("Payment---"+_payment.toString());
+        debugPrint("Time of delivery---"+time_of_delivery.toString());
 
 
-        if (time_of_delivery == "so_fast_as_possible") {
-          time = "so fast as possible";
+        if(_payment.toString() == "Payment.cashe")
+          {
+            payment = await "cash";
+          }
+
+        if(_payment.toString() == "Payment.card")
+        {
+          payment = await "card";
         }
 
-        if (time_of_delivery == "by_a_certain_time") {
-          time = " " + dropdownValue_day + " " + dropdownValue_time;
+
+
+        if (time_of_delivery.toString() == "TimeOfDelivery.so_fast_as_possible") {
+          time = await "so fast as possible";
+        }
+
+        if (time_of_delivery.toString() == "TimeOfDelivery.by_a_certain_time") {
+          time = await " " + dropdownValue_day + " " + dropdownValue_time;
         }
         //...
 
-        debugPrint("try save....");
+        debugPrint("try save....time__"+time+"____payment___"+payment);
         try {
           await debugPrint('start inside');
+          int total_price = await get_total_price(list);
           await provider.addProduct(Order(
               name_field_controller.text,
               json_list_of_objects,
@@ -73,7 +90,9 @@ submit_button(phone_field_controller,
               phone_field_controller.text,
               comment_field_controller.text,
               geo_location_field_controller.text,
-              time)
+              time,
+              total_price,
+              payment)
           );
           await debugPrint("still inside try");
         }
@@ -97,6 +116,21 @@ submit_button(phone_field_controller,
       child: Text('Submit'),
     ),
   );
+}
+
+int get_total_price(List<Product> list)
+{
+
+  int total_price = 0;
+
+    for(Product product in list)
+      {
+        total_price += (product.price * product.quantity);
+        debugPrint("Get_total_price____"+product.quantity.toString());
+      }
+
+
+    return total_price;
 }
 
 get_json_list_of_objects(List<Product> list) async

@@ -39,6 +39,7 @@ class CRUDModelForTableProducts extends ChangeNotifier {
   }
 
   Future addProduct(Product data) async{
+    debugPrint("DATA___"+data.toString());
     var result  = await _api.addDocument(data.toJson()) ;
     return ;
   }

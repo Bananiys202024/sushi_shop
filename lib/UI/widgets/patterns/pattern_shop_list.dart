@@ -18,12 +18,15 @@ class PatternShopList extends StatefulWidget {
 class _PatternShopListState extends State<PatternShopList> {
   @override
   Widget build(BuildContext context) {
+      debugPrint("From pattern_shop_list");
 
-    if(widget.products == null)
+    if(widget.products == null || widget.products.length == 0)
       {
+        debugPrint("if statement");
           return message_about_empty_categorie();
       }
     else {
+      debugPrint("else statement inside pattern shop list");
       return GridView.count(
         padding: const EdgeInsets.all(10.0),
         crossAxisSpacing: 3,
@@ -41,6 +44,7 @@ class _PatternShopListState extends State<PatternShopList> {
   }
 
   Widget create_card(Product product) {
+    debugPrint("Print from pattern shop list. Someone did activate class;.");
     return ScopedModelDescendant<CardModel>(
       builder: (context, child, model) {
         return Card(

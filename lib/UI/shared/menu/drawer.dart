@@ -1,6 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/UI/views/main.dart';
-import 'package:flutter_app/UI/views/medium_screen/account/input_phone_number.dart';
+import 'package:flutter_app/UI/views/medium_screen/account/input_phone_number_and_confirm_by_input_code.dart';
 import 'package:flutter_app/UI/views/medium_screen/admin/admin_page.dart';
 import 'package:flutter_app/core/models/Constants.dart';
 import 'package:flutter_app/core/models/card_model.dart';
@@ -18,6 +20,9 @@ class _DrawerMenuState extends State<DrawerMenu> {
   double size_of_head_text = 17.0;
   double size_of_subtitle = 13.0;
   var images = Constants.get_categories();
+  bool _isVisible_admin_panel =  ! (FirebaseAuth.instance.currentUser.isAnonymous);
+  //check if anonymouse user equals to anonymouse;
+
 
   @override
   Widget build(BuildContext context) {
@@ -60,6 +65,47 @@ class _DrawerMenuState extends State<DrawerMenu> {
                             color: Colors.black, fontSize: size_of_head_text)),
                     Text(
                       'To accumulate bonuses',
+                      style: TextStyle(
+                          color: Colors.grey, fontSize: size_of_subtitle),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          Row(
+            children: [
+              InkWell(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => MainPage()));
+                },
+                child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Icon(
+                      Icons.account_circle_outlined,
+                      size: size_of_icon,
+                      color: Color.fromRGBO(220, 10, 0, 1),
+                    )),
+              ),
+              InkWell(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => MainPage(initIndex: 0,)));
+                },
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('Products',
+                        style: TextStyle(
+                            color: Colors.black, fontSize: size_of_head_text)),
+                    Text(
+                      'show all products',
                       style: TextStyle(
                           color: Colors.grey, fontSize: size_of_subtitle),
                     ),
@@ -193,6 +239,9 @@ class _DrawerMenuState extends State<DrawerMenu> {
 
 
 
+    Visibility (
+    visible: _isVisible_admin_panel,
+    child:
     InkWell(
     onTap: () {
     Navigator.push(
@@ -226,6 +275,7 @@ class _DrawerMenuState extends State<DrawerMenu> {
               ),
             ],
           ),
+    ),
     ),
 
         ],

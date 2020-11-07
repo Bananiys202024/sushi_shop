@@ -1,6 +1,7 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/UI/shared/menu/drawer.dart';
 import 'package:flutter_app/UI/shared/menu/simplified_top_menu.dart';
 
 class AccountCabinet extends StatefulWidget {
@@ -16,14 +17,21 @@ class _AccountCabinetState extends State<AccountCabinet> {
 
   @override
   Widget build(BuildContext context) {
+
+    debugPrint("CurrentUser---"+auth.currentUser.toString());
+
+
     return Scaffold(
       appBar: SimplifiedTopMenu(),
+      drawer: DrawerMenu(),
       body:
       Center(
         child: RaisedButton(
             color: Colors.grey,
             onPressed: () async {
               await FirebaseAuth.instance.signOut();
+
+              debugPrint("CurrentUser---"+auth.currentUser.toString());
 
               await print("result");
               await auth

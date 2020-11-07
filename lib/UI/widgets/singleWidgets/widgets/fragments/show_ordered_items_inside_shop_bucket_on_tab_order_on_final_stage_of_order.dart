@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/UI/widgets/patterns/pattern_ordered_item_inside_shop_bucket_on_tab_order_on_final_tab_of_order.dart';
-import 'package:flutter_app/UI/widgets/singleWidgets/dividerWidget.dart';
+import 'package:flutter_app/UI/widgets/singleWidgets/widgets/divider.dart';
 import 'package:flutter_app/core/entity/product.dart';
 import 'package:flutter_app/core/models/card_model.dart';
 

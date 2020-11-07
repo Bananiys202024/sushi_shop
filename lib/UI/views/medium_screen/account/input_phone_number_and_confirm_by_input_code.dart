@@ -1,16 +1,16 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/UI/views/medium_screen/account/confirmation_code.dart';
-import 'package:flutter_app/core/services/twilio/send_sms.dart';
+import 'package:flutter_app/UI/views/medium_screen/account/cabinet.dart';
 
 import 'dart:io' show Platform;
 import 'dart:math';
 
-import 'package:flutter_app/core/models/twilio.dart';
+import 'package:flutter_app/UI/widgets/singleWidgets/widgets/fragments/submit/input_phone_number_and_confirm_by_input_code.dart';
 
-import 'cabinet.dart';
 
 class InputPhoneNumber extends StatefulWidget {
   InputPhoneNumber({Key key}) : super(key: key);
+
 
   @override
   _InputPhoneNumberState createState() => _InputPhoneNumberState();
@@ -18,7 +18,9 @@ class InputPhoneNumber extends StatefulWidget {
 
 class _InputPhoneNumberState extends State<InputPhoneNumber> {
 
-  final myController = TextEditingController();
+  final _codeController = TextEditingController();
+  FirebaseAuth _auth = FirebaseAuth.instance;
+  final _myController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -29,7 +31,7 @@ class _InputPhoneNumberState extends State<InputPhoneNumber> {
           color: Colors.red, //change your color here
         ),
         backgroundColor: Colors.white,
-        title: Text("Confirmation of phone",
+        title: Text("Input phone number",
         style: TextStyle(color: Colors.black)),
       ),
       body: get_body(),
@@ -57,13 +59,15 @@ class _InputPhoneNumberState extends State<InputPhoneNumber> {
           child:
           TextFormField(
             decoration: InputDecoration(
-              hintText: '+380743328441',
-              helperText: 'You will get sms with code of confirmation',
+              hintText: '380743328441',
+              helperText: 'You will get sms with code of confirmation. You should input phone number in international format;',
               filled: true,
+              prefixText: '+',
               fillColor: Colors.white,
             ),
+
             keyboardType: TextInputType.phone,
-            controller: myController,
+            controller: _myController,
             validator: (value) {
               if (value.isEmpty) {
                 return 'Please enter mobile number';
@@ -83,7 +87,7 @@ class _InputPhoneNumberState extends State<InputPhoneNumber> {
           ),
           ),
 
-          submit_button(),
+          submit_button(_auth, _formKey, _myController, context, _codeController),
 
         ],
        ),
@@ -93,34 +97,9 @@ class _InputPhoneNumberState extends State<InputPhoneNumber> {
 
 
 
-  Widget submit_button() {
-    return Center(
-      child: RaisedButton(
-        color: Colors.grey,
-        onPressed: () {
-          // Validate returns true if the form is valid, or false
-          // otherwise.
-          if (_formKey.currentState.validate()) {
-            // If the form is valid, display a Snackbar.
-//            scaffold
-//                .showSnackBar(SnackBar(content: Text('Processing Data....')));
 
-            int generated_code = random(1000,9999);
 
-//            send_sms_to_phone_twilio(generated_code, myController.text.toString());
 
-            Navigator.push(
-                context, MaterialPageRoute(builder: (context) => ConfirmationCode(generated_code: generated_code, phone: myController.text.toString())));
-          }
-        },
-        child: Text('Send confirmation'),
-      ),
-    );
-  }
 
-  random(min, max){
-    var rn = new Random();
-    return min + rn.nextInt(max - min);
-  }
 
 }

@@ -1,12 +1,18 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/UI/widgets/flutter_widgets/alert_dialog.dart';
 import 'package:flutter_app/core/entity/product.dart';
+import 'package:flutter_app/core/login_or_registration/options/get_currently_logged_user.dart';
 import 'package:flutter_app/core/models/card_model.dart';
+import 'package:flutter_app/core/viewModels/CRUDModelForTableProducts.dart';
+import 'package:provider/provider.dart';
 
 class PatternCard extends StatefulWidget {
   Product product;
   final String title = "atomic sushi";
   String message;
   CardModel model;
+
 
   PatternCard({Key key, this.product, this.message, this.model})
       : super(key: key);
@@ -16,6 +22,10 @@ class PatternCard extends StatefulWidget {
 }
 
 class _PatternCardState extends State<PatternCard> {
+
+  FirebaseAuth _auth = FirebaseAuth.instance;
+
+
   @override
   Widget build(BuildContext context) {
 
@@ -32,27 +42,22 @@ class _PatternCardState extends State<PatternCard> {
   }
 
   Widget get_top_part_of_card() {
+
+    String currenly_logged_user = get_currently_logged_user(_auth);
+
+    debugPrint("Refreshed");
     return Expanded(
       flex: 1,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-//          Padding(
-//            padding: EdgeInsets.all(5.0),
-//            child: widget.product.is_favorite
-//                ? Icon(
-//                    Icons.favorite,
-//                    color: Colors.yellow,
-//                    size: 26.0,
-//                  )
-//                : Icon(
-//                    Icons.favorite_border,
-//                    color: Colors.grey,
-//                    size: 26.0,
-//                  ),
-//          ),
           Padding(
-            padding: EdgeInsets.only(right: 5.0, top: 0.0),
+            padding: EdgeInsets.only(top: 0.0),
+            child: check_if_currently_logged_user_inside_list(
+                    widget.product.favorite_for_users, currenly_logged_user),
+          ),
+          Padding(
+            padding: EdgeInsets.only(top: 0.0),
             child: widget.product.is_new
                 ? Icon(
                     Icons.fiber_new_outlined,
@@ -67,16 +72,16 @@ class _PatternCardState extends State<PatternCard> {
   }
 
   Widget middle_card_1(Product product) {
-
-    return
-      product.image == ''?
-      Expanded(
-        flex: 2,
-        child: Image.asset("assets/images/default.jpeg"),
-      ):Expanded(
-      flex: 2,
-      child: Image.network(product.image),
-    );
+    debugPrint("IsImageEmptyFromMethodMiddleCard1---" + product.image);
+    return product.image == ''
+        ? Expanded(
+            flex: 2,
+            child: Image.asset("assets/images/default.jpeg"),
+          )
+        : Expanded(
+            flex: 2,
+            child: Image.network(product.image),
+          );
   }
 
   Widget middle_card_2(Product product) {
@@ -124,7 +129,7 @@ class _PatternCardState extends State<PatternCard> {
                       child: new Center(
                         child: Padding(
                           padding: EdgeInsets.all(1.0),
-                          child: Text(product.price.toString()+"p",
+                          child: Text(product.price.toString() + "p",
                               style: TextStyle(
                                 color: Colors.white,
                               )),
@@ -135,7 +140,7 @@ class _PatternCardState extends State<PatternCard> {
                   Expanded(
                     flex: 0,
                     child: Text(
-                      product.old_price.toString()+"p",
+                      product.old_price.toString() + "p",
                       style: TextStyle(
                           color: Colors.grey,
                           decoration: TextDecoration.lineThrough),
@@ -184,7 +189,7 @@ class _PatternCardState extends State<PatternCard> {
                           padding: EdgeInsets.only(left: 5.0),
                           child: Align(
                             alignment: Alignment.centerLeft,
-                            child: Text(product.price.toString()+"p",
+                            child: Text(product.price.toString() + "p",
                                 style: TextStyle(
                                   color: Colors.black,
                                 )),
@@ -215,6 +220,115 @@ class _PatternCardState extends State<PatternCard> {
         ),
       ),
     );
-  } //end method
+  }
+
+  check_if_currently_logged_user_inside_list(
+      List<dynamic> favorite_for_users, String currenly_logged_user) {
+
+    debugPrint("Control check list--"+favorite_for_users.toString());
+
+    var _productProvider = Provider.of<CRUDModelForTableProducts>(context);
+
+    bool result = false;
+
+    debugPrint("This is control check---" + favorite_for_users.toString());
+
+    if (favorite_for_users != null)
+      for (String name in favorite_for_users) {
+        if (name == currenly_logged_user) {
+          result = true;
+        }
+      }
+
+    debugPrint("result result---" + result.toString());
+
+    if (favorite_for_users == null || favorite_for_users.length == 0) {
+         return IconButton(
+           icon: Icon(Icons.favorite_border, color: Colors.grey, size: 26.0),
+           onPressed: () {
+
+             bool is_user_anonymyouse = _auth.currentUser.isAnonymous;
+
+             if(is_user_anonymyouse) {
+               showMyDialog(context, false, 'Log in',
+                   'You are anonymouse user for now. You need to log in to add this product to favorites. You can do it in side menu in personal cabinet.', 'Okey');
+             }
+             else
+             {
+
+               debugPrint("Current user--"+_auth.currentUser.toString());
+               debugPrint("Logged User---"+currenly_logged_user);
+               widget.product.add_item_to_list_of_favorite_for_users(currenly_logged_user);
+
+               debugPrint("Id of product-----"+widget.product.id);
+
+               _productProvider.updateProduct(widget.product, widget.product.id);
+               //save to firebase
+
+               debugPrint("Sending notify to firebase 8213");
+             }
+
+           },
+         );
+    }
+
+    return result
+        ? IconButton(
+            icon: Icon(Icons.favorite, size: 26, color: Colors.yellow),
+            onPressed: () async {
+
+              bool is_user_anonymyouse = _auth.currentUser.isAnonymous;
+
+              if(is_user_anonymyouse) {
+                showMyDialog(context, false, 'Log in',
+                    'You are anonymouse user for now. You need to log in to add this product to favorites. You can do it in side menu in personal cabinet.', 'Okey');
+              }
+              else
+              {
+
+                debugPrint("Current user--"+_auth.currentUser.toString());
+                debugPrint("Logged User---"+currenly_logged_user);
+                widget.product.remove_item_from_list_of_favorite_for_users(currenly_logged_user);
+
+                debugPrint("Id of product-----"+widget.product.id);
+
+                _productProvider.updateProduct(widget.product, widget.product.id);
+                //save to firebase
+
+
+                debugPrint("Sending notify to firebase 8213");
+              }
+
+            },
+          )
+        : IconButton(
+            icon: Icon(Icons.favorite_border, color: Colors.grey, size: 26.0),
+            onPressed: () {
+
+              bool is_user_anonymyouse = _auth.currentUser.isAnonymous;
+
+              if(is_user_anonymyouse) {
+                showMyDialog(context, false, 'Log in',
+                    'You are anonymouse user for now. You need to log in to add this product to favorites. You can do it in side menu in personal cabinet.', 'Okey');
+              }
+              else
+              {
+
+                debugPrint("Current user--"+_auth.currentUser.toString());
+                debugPrint("Logged User---"+currenly_logged_user);
+                widget.product.add_item_to_list_of_favorite_for_users(currenly_logged_user);
+
+                debugPrint("Id of product-----"+widget.product.id);
+
+                _productProvider.updateProduct(widget.product, widget.product.id);
+                //save to firebase
+
+                debugPrint("Sending notify to firebase 8213");
+              }
+
+            },
+          );
+  }
+
 
 }

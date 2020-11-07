@@ -4,7 +4,9 @@ import 'package:flutter_app/UI/trash/addProduct.dart';
 import 'package:flutter_app/UI/trash/productCard.dart';
 import 'package:flutter_app/core/models/product.dart';
 import 'package:flutter_app/core/viewModels/CRUDModelForTableProducts.dart';
+import 'package:loading/indicator/ball_pulse_indicator.dart';
 import 'package:provider/provider.dart';
+import 'package:loading/loading.dart';
 
 class HomeView extends StatefulWidget {
   @override
@@ -51,6 +53,12 @@ class _HomeViewState extends State<HomeView> {
                       ProductCard(productDetails: products[index]),
                 );
               } else {
+//              return Container(
+//                color: Colors.lightBlue,
+//                child: Center(
+//                  child: Loading(indicator: BallPulseIndicator(), size: 100.0,color: Colors.pink),
+//                ),
+//              );
                 return Text('fetching');
               }
             }),

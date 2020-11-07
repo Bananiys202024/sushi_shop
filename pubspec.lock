@@ -259,6 +259,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.6.2"
+  loader:
+    dependency: "direct main"
+    description:
+      name: loader
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.4.0"
+  loading:
+    dependency: "direct main"
+    description:
+      name: loading
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.2"
   matcher:
     dependency: transitive
     description:
