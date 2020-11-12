@@ -5,9 +5,9 @@
 
     
 <h2>Screenshots</h2>
-<img src="github_images/1.png">
-<kbd><img src="github_images/3.png"></kbd>
-<kbd><img src="github_images/2.png"></kbd>
+<img src="github_images/1.jpg">
+<kbd><img src="github_images/2.jpg"></kbd>
+<kbd><img src="github_images/3.jpg"></kbd>
 
 
 <h2>Frameworks and tools</h2>
