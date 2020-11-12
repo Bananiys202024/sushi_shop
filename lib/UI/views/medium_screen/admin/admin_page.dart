@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/UI/shared/menu/simplified_top_menu.dart';
-import 'package:flutter_app/UI/trash/HomeView.dart';
 import 'package:flutter_app/UI/views/medium_screen/admin/options/table_of_orders.dart';
 import 'package:flutter_app/core/viewModels/CRUDModelForTableProducts.dart';
 import 'package:provider/provider.dart';

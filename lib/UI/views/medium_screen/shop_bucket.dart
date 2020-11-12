@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/UI/shared/menu/bottom_bar.dart';
 import 'package:flutter_app/UI/shared/menu/simplified_top_menu.dart';
-import 'package:flutter_app/UI/widgets/patterns/pattern_shop_bucket_card.dart';
+import 'package:flutter_app/UI/widgets/fragments/patterns/pattern_shop_bucket_card.dart';
 import 'package:flutter_app/core/models/card_model.dart';
 import 'package:scoped_model/scoped_model.dart';
 

@@ -3,7 +3,7 @@ import 'package:badges/badges.dart';
 import 'package:flutter_app/UI/views/medium_screen/shop_bucket.dart';
 import 'package:flutter_app/core/models/Constants.dart';
 import 'package:flutter_app/core/models/card_model.dart';
-import 'package:flutter_app/core/viewModels/search.dart';
+import 'package:flutter_app/core/util/search.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 class TopMenu extends StatefulWidget implements PreferredSizeWidget {

@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/UI/views/medium_screen/account/cabinet.dart';
 
-Future registerUser(String mobile, BuildContext context, _auth, _codeController) async{
+Future registerUser(String mobile, BuildContext context, _auth, _codeController, _is_error_validation_for_input_phone_number_field) async{
 
   String phone = '+'+mobile;
   print('Phone__'+phone);
@@ -28,10 +28,14 @@ Future registerUser(String mobile, BuildContext context, _auth, _codeController)
           print("Error");
         }
 
+        _is_error_validation_for_input_phone_number_field = false;
+
         //This callback would gets called when verification is done auto maticlly
       },
       verificationFailed: (Exception exception){
         print("Exception----"+exception.toString());
+
+        _is_error_validation_for_input_phone_number_field = true;
       },
       codeSent: (String verificationId, [int forceResendingToken]){
         showDialog(

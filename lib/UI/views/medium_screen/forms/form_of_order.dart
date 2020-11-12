@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/UI/shared/menu/simplified_top_menu.dart';
+import 'package:flutter_app/UI/widgets/fragments/forms/form_of_order.dart';
 import 'package:flutter_app/core/models/card_model.dart';
 import 'package:scoped_model/scoped_model.dart';
 
-import '../../../widgets/forms/form_of_order.dart';
 
 class FormOfOrder extends StatefulWidget {
   FormOfOrder({Key key}) : super(key: key);

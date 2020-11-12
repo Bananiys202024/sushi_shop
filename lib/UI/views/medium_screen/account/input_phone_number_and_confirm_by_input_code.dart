@@ -5,7 +5,7 @@ import 'package:flutter_app/UI/views/medium_screen/account/cabinet.dart';
 import 'dart:io' show Platform;
 import 'dart:math';
 
-import 'package:flutter_app/UI/widgets/singleWidgets/widgets/fragments/submit/input_phone_number_and_confirm_by_input_code.dart';
+import 'package:flutter_app/UI/widgets/fragments/submit/input_phone_number_and_confirm_by_input_code.dart';
 
 
 class InputPhoneNumber extends StatefulWidget {
@@ -22,6 +22,7 @@ class _InputPhoneNumberState extends State<InputPhoneNumber> {
   FirebaseAuth _auth = FirebaseAuth.instance;
   final _myController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+  bool _is_error_validation_for_input_phone_number_field = false;
 
   @override
   Widget build(BuildContext context) {
@@ -73,11 +74,15 @@ class _InputPhoneNumberState extends State<InputPhoneNumber> {
                 return 'Please enter mobile number';
               }
 
+              if(_is_error_validation_for_input_phone_number_field)
+              {
+                return 'phone number should be in international format';
+              }
               //check mobile phone
               String pattern = r'(^(?:[+0]9)?[0-9]{10,12}$)';
               RegExp regExp = new RegExp(pattern);
               if (!regExp.hasMatch(value)) {
-                return 'Please enter valid mobile number';
+                return 'phone number should be in international format';
               }
               //...
 
@@ -87,7 +92,7 @@ class _InputPhoneNumberState extends State<InputPhoneNumber> {
           ),
           ),
 
-          submit_button(_auth, _formKey, _myController, context, _codeController),
+          submit_button(_auth, _formKey, _myController, context, _codeController, _is_error_validation_for_input_phone_number_field),
 
         ],
        ),

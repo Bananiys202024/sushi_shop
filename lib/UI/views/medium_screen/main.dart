@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/UI/widgets/patterns/pattern_shop_list.dart';
+import 'package:flutter_app/UI/widgets/fragments/patterns/pattern_shop_list.dart';
 import 'package:flutter_app/core/entity/product.dart';
 import 'package:flutter_app/core/models/card_model.dart';
 import 'package:loading/indicator/ball_pulse_indicator.dart';

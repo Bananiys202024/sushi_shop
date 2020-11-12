@@ -6,9 +6,11 @@ import 'package:flutter/material.dart';
 get_currently_logged_user(_auth)
 {
 
+  String logged_user = "";
 
-  String logged_user = _auth.currentUser.phoneNumber.toString().toLowerCase();
-
+  if(_auth.currentUser != null) {
+    logged_user = _auth.currentUser.phoneNumber.toString().toLowerCase();
+  }
 
   return logged_user;
 }
