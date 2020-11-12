@@ -16,9 +16,9 @@
      <td></td>
   </tr>
   <tr>
-<td<img src="github_images/1.jpg"></td>
-<td<kbd><img src="github_images/2.jpg"></kbd></td>
-<td<kbd><img src="github_images/3.jpg"></kbd></td>
+<td><img src="github_images/1.jpg"></td>
+<td><img src="github_images/2.jpg"></td>
+<td><img src="github_images/3.jpg"></td>
   </tr>
  </table>
 
