@@ -3,11 +3,25 @@
 <!---#<h2>Overwiew</h2>-->
 <!---#<h6><h6>-->
 
+
+
     
 <h2>Screenshots</h2>
-<img src="github_images/1.jpg">
-<kbd><img src="github_images/2.jpg"></kbd>
-<kbd><img src="github_images/3.jpg"></kbd>
+
+
+<table>
+  <tr>
+    <td></td>
+     <td></td>
+     <td></td>
+  </tr>
+  <tr>
+<td<img src="github_images/1.jpg"></td>
+<td<kbd><img src="github_images/2.jpg"></kbd></td>
+<td<kbd><img src="github_images/3.jpg"></kbd></td>
+  </tr>
+ </table>
+
 
 
 <h2>Frameworks and tools</h2>
